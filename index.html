@@ -34,15 +34,17 @@
                 update: update
             }
         };
-
+        //Declaração de variáveis
         var game = new Phaser.Game(config);
         var passarinho 
 
+        // Carrega as imagens 
         function preload() {
             this.load.image('bg', 'assets/bg_space.png');
             this.load.spritesheet('bird', 'assets/bird-purple.png', {frameWidth: 75, frameHeight: 75,});
         }
 
+        // Cria as imagens
         function create() {
             this.add.image(400, 300, 'bg').setScale(1.2);
             passarinho= this.add.sprite(50,60, 'bird').setScale(1.3);
@@ -57,45 +59,45 @@
 
             passarinho.anims.play('fly', true);
         }
-
+        // Atualiza o código/jogo
         function update() {
              
-            
+            // Cria a condição no eixo x em que se o passarinho estiver em sua posição inicial, ele deverá ir para frente
             if (passarinho.x ===50) {
                 passarinho.setFlip (false,false);
                 passarinho.ida = true;
             }
-
+            // Define a condição de deslocamento gradativo no eixo x da posição em pixels do passarinho
             if (passarinho.x <750 & passarinho.ida ===true){
-                console.log(passarinho);
+                console.log(passarinho.x);
                 passarinho.x+=5;
             }
-
+            // Cria a condição no eixo x em que se o passarinho estiver no final do fundo, ele deverá voltar
             if (passarinho.x ===750){
                 passarinho.setFlip (true, false);
                 passarinho.ida= false;
             }
-
+            // Define a condição de deslocamento gradativo no eixo x da posição em pixels do passarinho na volta
             if (passarinho.x> 50 & passarinho.ida=== false){
-                console.log(passarinho);
+                console.log(passarinho.x);
                 passarinho.x-=5;
             }
-            
+            // Cria a condição no eixo y em que se o passarinho estiver em sua posição inicial, ele deverá subir
             if (passarinho.y ===60) {
                 passarinho.subida = true;
             }
-
+            // Define a condição de deslocamento gradativo no eixo y da posição em pixels do passarinho
             if (passarinho.y <540 & passarinho.subida ===true){
-                console.log(passarinho);
+                console.log(passarinho.y);
                 passarinho.y+=1;
             }
-
+            // Cria a condição no eixo y em que se o passarinho estiver no topo do fundo, ele deverá descer
             if (passarinho.y ===540){
                 passarinho.subida= false;
             }
-
+            // Define a condição de deslocamento gradativo no eixo y da posição em pixels do passarinho na descida
             if (passarinho.y> 60 & passarinho.subida=== false){
-                console.log(passarinho);
+                console.log(passarinho.y);
                 passarinho.y-=1;
             }
         }
